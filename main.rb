@@ -29,7 +29,9 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
       when '/stop'
         bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")
       else
-        translate =  EasyTranslate.translate(message.text, :to => :ru)
+        cyrillic_letters = message.text.match(/\p{Cyrillic}/)
+        language = cyrillic_letters ? :en : :ru
+        translate =  EasyTranslate.translate(message.text, :to => language)
         bot.api.send_message(chat_id: message.chat.id, text: translate)
       end
     rescue => e
