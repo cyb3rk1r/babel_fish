@@ -10,22 +10,6 @@ SemanticLogger.add_appender(io: $stdout, formatter: :color)
 
 logger = SemanticLogger['BabelFish']
 
-babel_fish_logo = <<EOF
-                                                    _
-                  __....---------------.       _.-'' |
-               ,:'_ \__      '._`-.,--- `.    / _.-' |
-     _       ,'',-.`.  |_____   `-:_`-.,- \  / / _.- |
-    | `.   ,' : `-' ;_,'---. `--..__`-:._`-`' /,'__. :
-    |:  `.' o-'`---'  |    |     .--`---<----<:-..__ /
-    |::--._.      __.-'  _ |.--.-'---.   )-,. \\`. .  \\
-    |:  ,.  `'`.,'  , , / |:| _|    ,' ,`-/  \ \\ `. :
-    |_,'  `-.    _.',' (_ |:| _| _,','`- /    \ \`.  |
-             `-.__  [|_| ||:|__,','`--- /      \ \ ` |
-                  `-..._______.:..-----' SSt    \_`. |
-                                                  `-.|
-EOF
-logger.info(babel_fish_logo)
-
 Telegram::Bot::Client.run(telegram_token) do |bot|
   bot.listen do |message|
     next unless message.text
