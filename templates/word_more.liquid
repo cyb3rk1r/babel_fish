@@ -1,0 +1,20 @@
+<ul id="{{text}}">
+    <li>
+      <h2>{{ [entity['prefix'], entity['text']].join(' ') }}</h2>
+    </li>
+    <li>
+      <code>{{ entity['transcription'] }}</code>
+    </li>
+    <li>
+      <audio>{{ ['https:', entity['soundUrl']].join('') }}</audio>
+    </li>
+
+    {% for example in entity['examples'] %}
+      <li>
+        <h3>{{ example[text] }}</h3>
+      </li>
+      <li>
+        <audio>{{ ['https:', example['soundUrl']].join('') }}</audio>
+      </li>
+    {% endfor %}
+</ul>
