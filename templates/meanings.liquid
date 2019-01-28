@@ -1,0 +1,6 @@
+*{{ meanings[0]['text'] }}*
+`{{ meanings[0]['transcription'] }}`
+[Listen {{ meanings[0]['text'] }}](https:{{ meanings[0]['soundUrl'] }})
+{% for meaning in meanings %}
+_{{ meaning['translation']['text'] }}_
+{% endfor %}
