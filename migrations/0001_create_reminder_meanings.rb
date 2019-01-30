@@ -1,11 +1,10 @@
 Sequel.migration do
   up do
-    create_table(:translates) do
+    create_table(:reminder_meanings) do
       primary_key :id
-      String :in, null: false
-      String :out, null: false
-      String :out_lang, null: false
       Fixnum :chat_id, null: false
+      String :meaning_ids, null: false
+      Boolean :active, default: true, null: :false
     end
   end
   down do
