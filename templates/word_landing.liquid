@@ -1,0 +1,8 @@
+<b>{{ entity['text'] }}</b>
+{% for meaning in entity['meanings'] %}
+<i>{{ meaning['translation'] }}</i>
+<code>{{ meaning['transcription] }}</code>
+<a href="https://{{meaning['imageUrl]}}">inline URL</a>
+<a href="https://{{meaning['soundUrl]}}">Listen:</a>
+<a href=""><>
+{% endfor %}

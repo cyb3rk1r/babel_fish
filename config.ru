@@ -1,10 +1,9 @@
 require 'sidekiq'
 
-rediscloud_url = ENV.fetch('REDIS_CLOUD_URL', nil)
+rediscloud_url = ENV.fetch('REDISCLOUD_URL', nil)
 Sidekiq.configure_client do |config|
   defaults = { db: 1 }
-  redis_params = rediscloud_url ? defaults.merge( url: rediscloud_url ) : defaults
-  config.redis = redis_params
+  config.redis = rediscloud_url ? { url: rediscloud_url } : defaults
 end
 
 require 'sidekiq/web'
