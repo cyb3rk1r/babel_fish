@@ -10,5 +10,7 @@ gem 'tilt'
 gem 'oj'
 gem 'rest-client'
 gem 'sequel'
+gem 'timezone'
+gem 'sidekiq'
 
 gem "byebug", "~> 10.0", :groups => [:development, :test]

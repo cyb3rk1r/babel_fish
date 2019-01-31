@@ -1,2 +1,3 @@
 telegram_bot: bundle exec ruby main.rb
-reminder_meaning: bundle exec ruby ./bin/reminder_meaning
+web: bundle exec rackup config.ru
+telegram_worker: bundle exec sidekiq -r ./bin/worker.rb
