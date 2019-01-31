@@ -144,7 +144,8 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
     rescue => e
       puts "#{e.inspect}"
       bot.api.send_message(chat_id: message.from.id, text: 'error')
-      raise e
+      next
+      # raise e
     end
   end
 end
