@@ -28,16 +28,13 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
     begin
       case message
       when Telegram::Bot::Types::CallbackQuery
+        logger.info(payload: message.data)
         chat_id = message.from.id
         callback_query = message.data.split(':')
         move, id, s_index, m_index = callback_query
         case move
         when 'rmbr'
           ForgettingCurve.schedule(Time.now).each do |run_at|
-            # ForgettingCurve.enqueue(chat_id: chat_id.to_s,
-            #                         id: id.to_s,
-            #                         s_index: s_index.to_s,
-            #                         m_index: m_index.to_s, run_at: run_at)
             ForgettingCurve.enqueue(chat_id.to_s, id.to_s, s_index.to_s, m_index.to_s, run_at: run_at)
           end
           rmrmbr = true
@@ -70,6 +67,7 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
         end
       when Telegram::Bot::Types::Message
         next unless message.text
+        logger.info(payload: message.text)
         case message.text
         when '/start'
           greeting = Tilt.new('views/greeting.liquid').render

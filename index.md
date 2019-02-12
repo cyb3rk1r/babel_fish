@@ -1,123 +1,50 @@
 ---
 layout: default
 ---
+ 
+ # @babel_fish_bot
+ >  Используя [SkyEng](https://skyeng.ru/), [@babel_fish_bot](https://t.me/babel_fish_bot) умеет переводить слова и выражения на английский язык с **русского и английского языка**
+ 
+ **Чтобы перевести какое то слово, просто отправь его боту**
+ 
+ Бот ответит первым из многих переводов, предложенных [SkyEng](https://skyeng.ru/)
+ 
+ ## Перевод
+включает в себя:
+ - Картинку(если есть)
+ - Само слово или самый подходящий вариант
+ - Транскрипцию(если есть, иначе пришлет []) 
+ - Перевод слова
+ - Клавиатуру 
+ 
+ ### Клавиатура
+ #### Навигация среди ответов
+ 1. Другое написание слова
+   - **🔺 Предыдущий вариант поиска**
+   - **🔻 Следующий вариант поиска**
+ 2. Другое значение с правильным написанием
+   - **▶ Следующее значение**
+   - **◀ Предыдущее значение** 
+ #### Управляющие кнопки
+ 1. **💾 Запомнить слово**. После нажатия, бот будет присылать тебе уведомления с этим словом и клавиатурой, согласно **Кривой запоминаний**
+ - В клавиатуре уведомления будет **кнопка ❌ удаления** всех последующих уведомлений этого слова
+ 
+ 
+# Кривая запоминания
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-[Link to another page](./another-page.html).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+Чтобы запомнить слово, на нем нужно сосредоточить внимание несколько раз.
+@babel_fish_bot использует следующие интервалы повторений переводов:
+ - через 5 секунд,
+ - через 25 секунд
+ - через 2 минуты,
+ - через 10 минут,
+ - через 1 час,
+ - через 5 часов,
+ - через 1 день,
+ - через 3 дня,
+ - через 5 дней,
+ - через 7 дней,
+ - через 14 дней,
+ - через 25 дней,
+ - через 8 недель,
+ - через 16 недель
