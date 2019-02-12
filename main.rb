@@ -88,15 +88,9 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
                                  parse_mode: 'markdown',
                                  reply_markup: presented[:markup])
             end
+          elsif stored_message[:message].translation.empty?
+            bot.api.send_message(chat_id: message.chat.id, text: '¯\_(ツ)_/¯')
           else
-            # errors = message.errors.map do |klass, ers|
-            #   ers.map do |errcode|
-            #     i18n_key = 'errors.%{klass}.%{errcode}' % { klass: klass, errcode: errcode }
-            #     I18n.t(i18n_key)
-            #   end
-            # end
-            # errors_text = Tilt.new('views/errors.liquid').render(errors: errors)
-            # bot.api.send_message(chat_id: message.chat.id, text: errors_text)
             next
           end
         end
