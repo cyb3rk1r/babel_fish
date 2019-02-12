@@ -1,0 +1,2 @@
+en:
+  greeting: hi, %{username}

@@ -1,0 +1,5 @@
+development:
+  adapter: 'postgres'
+  database: 'babel_fish'
+  pool: 5
+  timeout: 5000

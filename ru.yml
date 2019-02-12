@@ -1,0 +1,5 @@
+ru:
+  remember_text: 'Запомнить %{word}'
+  greeting: 'wat'
+  errors:
+    wrong_command: 'Такой команды нет'
