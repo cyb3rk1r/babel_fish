@@ -3,8 +3,8 @@ class MeaningEntity < Grape::Entity
                     previous_meaning: '◀️',
                     next_search: '🔻',
                     next_meaning: '▶️',
-                    rmrmbr: '❌',
-                    remember: '💾' }
+                    rmrmbr: '️💔',
+                    remember: '❤️' }
 
   expose :s_index
   expose :m_index
