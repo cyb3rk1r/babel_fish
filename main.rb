@@ -31,8 +31,19 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
         logger.info(payload: message.data)
         chat_id = message.from.id
         callback_query = message.data.split(':')
-        move, id, s_index, m_index = callback_query
-        case move
+        command, id, s_index, m_index = callback_query
+        case command
+        when 'listen'
+          stored_message = StoredMessage.find(id: id)
+          presented = MeaningEntity.represent(stored_message, s_index: s_index, m_index: m_index).as_json
+          if presented[:audio]
+            bot.api.send_audio(chat_id: chat_id,
+                               caption: presented[:caption],
+                               audio: presented[:audio])
+          else
+            bot.api.send_message(chat_id: message.chat.id, text: '¯\_(ツ)_/¯')
+          end
+          next
         when 'rmbr'
           ForgettingCurve.schedule(Time.now).each do |run_at|
             ForgettingCurve.enqueue(chat_id.to_s, id.to_s, s_index.to_s, m_index.to_s, run_at: run_at)
@@ -47,8 +58,10 @@ Telegram::Bot::Client.run(telegram_token) do |bot|
                                          args.get_text(2) => options[2],
                                          args.get_text(3) => options[3]).delete
           rmrmbr = false
+          bot.api.send_message(chat_id: message.from.id, text: '¯\_(ツ)_/¯')
+          next
         end
-        presented = MeaningEntity.represent(StoredMessage.find(id: id), { move => true,
+        presented = MeaningEntity.represent(StoredMessage.find(id: id), { command => true,
                                                                           rmrmbr: rmrmbr,
                                                                           s_index: s_index,
                                                                           m_index: m_index}).as_json

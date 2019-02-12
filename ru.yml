@@ -1,5 +1,7 @@
 ru:
   remember_text: 'Запомнить %{word}'
+  rm_remember_text: 'Не напоминай %{word}'
+  listen_text: 'Слушать %{word}'
   greeting: 'wat'
   errors:
     wrong_command: 'Такой команды нет'

@@ -3,6 +3,7 @@ class MeaningEntity < Grape::Entity
                     previous_meaning: '◀️',
                     next_search: '🔻',
                     next_meaning: '▶️',
+                    listen: '📢',
                     rmrmbr: '️💔',
                     remember: '❤️' }
 
@@ -11,6 +12,7 @@ class MeaningEntity < Grape::Entity
   expose :caption
   expose :meaning_photo
   expose :markup
+  expose :audio
   private
 
   def meaning
@@ -22,15 +24,16 @@ class MeaningEntity < Grape::Entity
     meaning['imageUrl'] ? format('https:%{urlpart}', urlpart: meaning['imageUrl']) : nil
   end
 
+  def audio
+    return nil if meaning.nil?
+    meaning['soundUrl'] ? format('https:%{urlpart}', urlpart: meaning['soundUrl']) : nil
+  end
+
   def markup
     search_controls = [previous_search, next_search].compact
     meaning_controls = [previous_meaning, next_meaning].compact
-    # summary_buttons = object.translation.map do |search_result|
-    #     [ search_result[:text],
-    #  end
-
-    #####
-    keyboard = [search_controls,meaning_controls, [remembrancer]].map do |button_group|
+    controls = [listen, remembrancer].compact
+    keyboard = [search_controls,meaning_controls, controls].map do |button_group|
       button_group.map do |button|
         Telegram::Bot::Types::InlineKeyboardButton.new(text: button[:text],
                                                        callback_data: button[:callback_data])
@@ -39,10 +42,22 @@ class MeaningEntity < Grape::Entity
     Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: keyboard)
   end
 
+  def listen
+    txt = I18n.t('listen_text') % { word: object.translation[s_index]['text'] }
+    {
+        text: BUTTONS_EMOJI[:listen] + txt,
+        callback_data: format('listen:%{object_id}:%{s_index}:%{m_index}',
+                              object_id: object.id,
+                              s_index: s_index,
+                              m_index: m_index)
+    }
+  end
+
   def remembrancer
     if options[:rmrmbr]
+      txt = I18n.t('rm_remember_text') % { word: object.translation[s_index]['text'] }
       {
-          text: BUTTONS_EMOJI[:rmrmbr],
+          text: BUTTONS_EMOJI[:rmrmbr] + txt,
           callback_data: format('rmrmbr:%{object_id}:%{s_index}:%{m_index}',
                                 object_id: object.id,
                                 s_index: s_index,
