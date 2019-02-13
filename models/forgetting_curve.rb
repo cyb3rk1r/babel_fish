@@ -18,9 +18,6 @@ class ForgettingCurve < Que::Job
 
   def self.schedule(dt)
     [
-        dt + 5.seconds,
-        dt + 25.seconds,
-        dt + 2.minutes,
         dt + 10.minutes,
         dt + 1.hour,
         dt + 5.hour,
